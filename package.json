@@ -1,0 +1,16 @@
+{
+  "name": "dmart-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "expo start --web",
+    "build": "expo export --platform web"
+  },
+  "dependencies": {
+    "expo": "~52.0.0",
+    "react-native-web": "~0.19.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2"
+  }
+}

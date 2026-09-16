@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "DMart Website",
+    "slug": "dmart-website",
+    "version": "1.0.0",
+    "platforms": ["web"],
+    "web": {
+      "output": "static"
+    }
+  }
+}

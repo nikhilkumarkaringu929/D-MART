@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMart – Daily Savings, Better Living!</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Color Palette & Variables --- */
+        :root {
+            --primary-blue: #0056b3;
+            --dark-blue: #002244;
+            --accent-green: #28a745;
+            --light-green: #e8f5e9;
+            --background-light: #f4f7f6;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Global Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Navigation Bar --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--accent-green);
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- 1. Homepage / Hero Section --- */
+        #home {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 7rem 0 9rem;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+        }
+
+        /* --- 2. About Us Section --- */
+        #about {
+            background-color: var(--white);
+            border-radius: 20px;
+            margin-top: -4rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* --- 3. Facilities Section --- */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .facility-card {
+            background: var(--white);
+            padding: 2.2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 5px solid var(--primary-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .facility-icon {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.2rem;
+            background: #e6f0fa;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .facility-card h3 {
+            font-size: 1.35rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.8rem;
+        }
+
+        .facility-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* Smart Feature Highlight Box (Card 5) */
+        .smart-feature {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #ffffff 0%, #eefbf1 100%);
+            border: 2px solid var(--accent-green);
+            border-left: 8px solid var(--accent-green);
+            position: relative;
+        }
+
+        .smart-feature .facility-icon {
+            background: var(--light-green);
+            color: var(--accent-green);
+        }
+
+        .smart-badge {
+            background-color: var(--accent-green);
+            color: var(--white);
+            padding: 0.35rem 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .academic-note {
+            display: block;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .interactive-btn {
+            margin-top: 1.2rem;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .interactive-btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* --- Modal Box --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .close-btn {
+            margin-top: 1.5rem;
+            background-color: var(--accent-green);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 2.5rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-credits {
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+
+        .student-name {
+            color: #5cdb95;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.1rem; }
+            .hero-content p { font-size: 1rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo" id="logo-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> DMart<span>.</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a onclick="scrollToSection('home')">Home</a></li>
+                    <li><a onclick="scrollToSection('about')">About Us</a></li>
+                    <li><a onclick="scrollToSection('facilities')">Facilities</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area Container for JS Injection -->
+    <div id="app"></div>
+
+    <!-- Interactive Simulation Modal Display -->
+    <div class="modal" id="simulationModal">
+        <div class="modal-content">
+            <i class="fa-solid fa-robot" style="font-size: 3rem; color: var(--accent-green); margin-bottom: 1rem;"></i>
+            <h3>Auto-Stocking Triggered!</h3>
+            <p style="margin-top: 0.8rem; color: var(--text-dark);">
+                [Simulation System Active]: Shelf stock detected at 0 units. Automated reorder request sent directly to primary supplier API.
+            </p>
+            <button class="btn close-btn" onclick="toggleModal(false)">Close Simulation</button>
+        </div>
+    </div>
+
+    <!-- Footer Area -->
+    <footer>
+        <div class="container" id="footer-container">
+            <!-- Dynamic Footer Content injected via JavaScript -->
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data Configuration Object
+        const siteData = {
+            brandName: "DMart",
+            author: "CHERUPALLY ABHINAV KUMAR",
+            year: 2026,
+            homepage: {
+                headline: "Welcome to DMart – Daily Savings, Better Living!",
+                subHeadline: "Your one-stop destination for fresh groceries, household essentials, and unbeatable value.",
+                ctaButtonText: "Explore Our Facilities"
+            },
+            aboutUs: {
+                title: "About Us",
+                text: "At DMart, we focus on providing our customers with the best products at the lowest possible prices. Established to bring structural efficiency to retail, we serve thousands of families daily by keeping our operations lean, our infrastructure modern, and our technology forward-thinking."
+            },
+            facilities: [
+                {
+                    icon: "fa-solid fa-store",
+                    title: "Broad Shopping Aisles",
+                    description: "Enjoy a stress-free shopping experience with wide, organized walkways designed for easy cart maneuvering.",
+                    highlight: false
+                },
+                {
+                    icon: "fa-solid fa-credit-card",
+                    title: "Express Checkout Counters",
+                    description: "Minimize your waiting time with our high-speed billing counters and dedicated digital payment lanes.",
+                    highlight: false
+                },
+                {
+                    icon: "fa-solid fa-square-parking",
+                    title: "Dedicated Parking Zone",
+                    description: "Safe, spacious, and hassle-free parking spaces built right outside the store for your convenience.",
+                    highlight: false
+                },
+                {
+                    icon: "fa-solid fa-truck-fast",
+                    title: "Home Delivery System",
+                    description: "Shop online or in-store and get your bulky grocery bundles delivered right to your doorstep safely.",
+                    highlight: false
+                },
+                {
+                    icon: "fa-solid fa-robot",
+                    title: "Smart Auto-Stocking System",
+                    description: "Our cutting-edge inventory system automatically detects when any product stock drops to zero and instantly triggers an automated order to suppliers to ensure the shelves are never empty for our customers.",
+                    academicNote: "(Note: This is an academic simulation display for a student project).",
+                    highlight: true
+                }
+            ]
+        };
+
+        // Function to dynamically build DOM elements using JavaScript
+        function renderWebsite() {
+            const app = document.getElementById('app');
+
+            // 1. Build Homepage / Hero Section
+            const heroSection = document.createElement('section');
+            heroSection.id = 'home';
+            heroSection.innerHTML = `
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>${siteData.homepage.headline}</h1>
+                        <p>${siteData.homepage.subHeadline}</p>
+                        <button class="btn" onclick="scrollToSection('facilities')">${siteData.homepage.ctaButtonText}</button>
+                    </div>
+                </div>
+            `;
+
+            // 2. Build About Us Section
+            const aboutSection = document.createElement('section');
+            aboutSection.id = 'about';
+            aboutSection.className = 'container';
+            aboutSection.innerHTML = `
+                <h2 class="section-title">${siteData.aboutUs.title}</h2>
+                <p class="about-text">${siteData.aboutUs.text}</p>
+            `;
+
+            // 3. Build Facilities Section
+            const facilitiesSection = document.createElement('section');
+            facilitiesSection.id = 'facilities';
+            
+            let facilityCardsHTML = siteData.facilities.map(facility => {
+                if (facility.highlight) {
+                    return `
+                        <div class="facility-card smart-feature">
+                            <span class="smart-badge">Innovative Tech Feature</span>
+                            <div class="facility-icon">
+                                <i class="${facility.icon}"></i>
+                            </div>
+                            <h3>${facility.title}</h3>
+                            <p>${facility.description}</p>
+                            <small class="academic-note">${facility.academicNote}</small>
+                            <button class="interactive-btn" onclick="toggleModal(true)">
+                                <i class="fa-solid fa-play"></i> Run Simulation Demo
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="facility-card">
+                            <div class="facility-icon">
+                                <i class="${facility.icon}"></i>
+                            </div>
+                            <h3>${facility.title}</h3>
+                            <p>${facility.description}</p>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            facilitiesSection.innerHTML = `
+                <div class="container">
+                    <h2 class="section-title">Store Facilities & Tech Amenities</h2>
+                    <div class="facilities-grid">
+                        ${facilityCardsHTML}
+                    </div>
+                </div>
+            `;
+
+            // Append built sections to the DOM
+            app.appendChild(heroSection);
+            app.appendChild(aboutSection);
+            app.appendChild(facilitiesSection);
+
+            // 4. Render Footer with Creator Attribution
+            const footerContainer = document.getElementById('footer-container');
+            footerContainer.innerHTML = `
+                <p>&copy; ${siteData.year} ${siteData.brandName} Academic Project. All rights reserved.</p>
+                <div class="footer-credits">
+                    <p>CREATED BY <span class="student-name">${siteData.author}</span></p>
+                </div>
+            `;
+        }
+
+        // JavaScript Navigation Helper
+        function scrollToSection(sectionId) {
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // JavaScript Interactive Modal Toggle
+        function toggleModal(show) {
+            const modal = document.getElementById('simulationModal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+
+        // Initialize Web Application when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWebsite();
+
+            document.getElementById('logo-btn').addEventListener('click', () => {
+                scrollToSection('home');
+            });
+        });
+    </script>
+</body>
+</html>
+
+  
